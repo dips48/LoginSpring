@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<property name="viewClass">
+		<value>
+			org.springframework.web.servlet.view.freemarker.FreeMarkerView
+		</value>
+	</property>
+	
+	<property name="cache">
+		<value>false</value>
+	</property>
+	
+	<property name="suffix">
+		<value>.ftl</value>
+	</property>
+	</bean>
+	
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath">
+			<value></value>
+		</property>
+	</bean>
+	
+	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+		<props>
+			<prop key="login.do">LoginAction</prop>
+		</props>
+		</property>
+	</bean>
+	
+	<bean id="LoginAction" class="com.dips.intent.LoginAction">
+		<property name="commandClass">
+			<value>com.dips.intent.LoginInfo</value>
+		</property>
+		
+		<property name="fail_view">
+			<value>loginfail</value>
+		</property>
+		
+		<property name="success_view">
+			<value>main</value>
+		</property>
+	</bean>
+</beans>
